@@ -3,12 +3,9 @@ package br.edu.ifba.inf008.connection;
 public class DatabaseConnection {
 
     private static DatabaseConnection instance;
-    private String connection;
     private int currentValue;
 
-    private DatabaseConnection(){
-        this.connection = "DbConnection";
-    }
+    protected DatabaseConnection(){ }
 
     public static DatabaseConnection getInstance(){
         if(instance == null)
@@ -16,12 +13,16 @@ public class DatabaseConnection {
         return instance;
     }
 
+    public static void setIntance(DatabaseConnection connection){
+        instance = connection;
+    }
+
     public void incrementValue(){
         this.currentValue++;
     }
 
     public String showStatus(){
-        return this.connection + " with value: " + currentValue;
+        return this.getClass().getSimpleName() + " with value: " + currentValue;
     }
 
 }
